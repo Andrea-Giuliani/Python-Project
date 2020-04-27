@@ -1,7 +1,7 @@
 # Python-Project
 Project for the class "GRAD-E1326: Python Programming for Data Scientists"
 
-This project was divided into 4 main parts and it will be documented accordingly. 
+This project was divided into 4 main modules and it is documented accordingly. 
 
 ## 1. Web Scraping
 
