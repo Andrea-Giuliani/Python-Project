@@ -408,7 +408,7 @@ This module was divided into three main parts.
 
 The most of the code was based on the official streamlit tutorial, what can be found on this [link](https://docs.streamlit.io/tutorial/create_a_data_explorer_app.html#filter-results-with-a-slider) and it is already well documented.
 
-The only new function created by the group was the funcion calculate_skill_index, as shown in the picture hereunder.
+The only new function created was the funcion calculate_skill_index. Both the logic and the function is shown hereunder.
 ![alt text](https://github.com/Andrea-Giuliani/Python-Project/blob/master/demo/skills%20score.jpg)
 
 ```python
