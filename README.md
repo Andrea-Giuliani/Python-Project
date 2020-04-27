@@ -105,17 +105,23 @@ def extract_location2(url):
 
 #### 2.1. How to run this script
 
-You can find the code [here](include link)
+You can find the code [here](https://github.com/Andrea-Giuliani/Python-Project/blob/master/Data_Cleaning/Data_Cleaning.py)
 
 #### 2.2. What the script does?
 
-Mari write here... and copy his functions..
+Data cleaning is the second step of our project. This module prepares the recolected data for analysis. Data almost never comes in clean, especially when doing web scraping. This script merges the two csv files obtained from the previous step. The script treats missing values, shapes the data frame, transforms the types of variables, and visualize the summary statistics of numerical variables.
+
+With a clean data frame, the script checks for duplicates and generates the main features of the job offers posted in De.Indeed.com in Berlin. Thus, we analized the main information of the job offers extracted, like companies that posted more job offers and types of positions offered for data scientists and analysts. The script plots these results.
+
+Finally, this module cleans and process the description of the job postings (text column). The script extracts the basic features of text data, does the basic pre-processing of the text, and finally, plots the most frequent words in the text. Therefore, we can identify the main characteristics of job offers and required skills in the job market in Berlin.
+
+
 
 ## 3.Data Mining
 
 #### 3.1. How to run this script
 
-You can find the code [here](Data_Mining/Andrea_Code_Data_Mining.py)
+You can find the code [here](https://github.com/Andrea-Giuliani/Python-Project/blob/master/Data_Mining/Data_Mining.py)
 
 #### 3.2. What the script does?
 
