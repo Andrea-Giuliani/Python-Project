@@ -395,6 +395,7 @@ For that I used Visual Studio Code as IDE, since apparently Streamlit cannot be 
 #### 4.2 How to deploy Streamlit
 
 To deploy our demo we followed strictily this [link](https://gilberttanner.com/blog/deploying-your-streamlit-dashboard-with-heroku), which explain how to deploy one Streamlit dashboard with Heroku ([link](https://job-ads-demo.herokuapp.com/) to Streamlit app).
+In this link, it is well explained the need of the files Procile, requirements.txt and setup.sh that you see in the main folder of Github.
 
 #### 4.3 What the script does?
 
@@ -407,7 +408,8 @@ This module was divided into three main parts.
 
 The most of the code was based on the official streamlit tutorial, what can be found on this [link](https://docs.streamlit.io/tutorial/create_a_data_explorer_app.html#filter-results-with-a-slider) and it is already well documented.
 
-The only new function created by the group was the funcion calculate_skill_index, as shown here:
+The only new function created by the group was the funcion calculate_skill_index, as shown in the picture hereunder.
+![alt text](https://github.com/Andrea-Giuliani/Python-Project/blob/master/demo/skills%20score.jpg)
 
 ```python
 def calculate_skill_index(job_ads_row):
