@@ -123,12 +123,14 @@ def mark_nan_values(df_merged):
     '''
     df_merged[['Company_name', 'Location','Rating','Job_description','Location2']] = df_merged[['Company_name', 'Location', 'Rating','Job_description', 'Location2']].replace({'NOT_FOUND': np.NaN}) # columns without information in some cells 
     return df_merged
+    
 def drop_col(df_merged):
     '''
     We drop the column 'Location' since it has many missing values: drop 'Location'
     '''
     df_merged_drop = df_merged.drop(['Location'], axis=1)
     return df_merged_drop
+    
 def change_dtypes(df_merged_drop):
     '''
     We want to change some dtypes to save memory and work with numerical 
@@ -142,6 +144,7 @@ def change_dtypes(df_merged_drop):
     df_merged_drop['Rating'] = df_merged_drop['Rating'].str.extract('(\d+)')
     df_merged_drop['Rating'] = pd.to_numeric(df_merged_drop['Rating'], errors='coerce')
     return df_merged_drop
+    
 def check_duplicates(data_clean):
     '''
     This function is to find duplicate rows. 
@@ -158,7 +161,6 @@ def check_duplicates(data_clean):
     duplicate_rowsdf = data_clean[data_clean.duplicated(keep=False)]
     return duplicate_rowsdf
  
- 
 def categorical_col(data_clean):
     '''
     Describe categorical columns of type np.object. 
@@ -172,6 +174,7 @@ def categorical_col(data_clean):
     '''
     data_clean_describe = data_clean[['Job_title', 'Company_name']].describe(include=object).transpose()
     return data_clean_describe
+
 def group_by_company(data_clean):
     '''
     We want to group by Company and count different job positions offered and posts
@@ -183,6 +186,7 @@ def group_by_company(data_clean):
                                    'Unnamed: 0': 'num_job_posts'})\
                 .sort_values('num_job_title', ascending=False)
     return cat_data_clean
+
 def features_by_company(cat_data_clean):
     '''
     We want to observe the supply job market extracted from our web scrapping. 
@@ -201,8 +205,7 @@ def features_by_company(cat_data_clean):
     companies_maxoffer = cat_data_clean[cat_data_clean['num_job_posts'] == 229 ].index # Get company that offer the maximum of job positions
     companies_maxtitle = cat_data_clean[cat_data_clean['num_job_title'] == 32 ].index # Get company that offer the maximum of job titles
     return features_by_company
-  
-  
+    
 def basic_feature_extraction(eng_data_clean_text):
     '''
     1. We use the split function. We asume that the job descriptions with more words have
@@ -216,6 +219,7 @@ def basic_feature_extraction(eng_data_clean_text):
     eng_data_clean_text['char_count'] = eng_data_clean_text['Job_description'].str.len() # Number of characters (it includes spaces)
     eng_data_clean_text['stopwords'] = eng_data_clean_text['Job_description'].apply(lambda x: len([x for x in x.split() if x in stop])) # Number of stopwords
     return eng_data_clean_text
+
 def basic_pre_processing(eng_data_clean_text):
     '''
     We clean the text data in order to obtain better results. For this we will do some
@@ -236,6 +240,7 @@ def basic_pre_processing(eng_data_clean_text):
     eng_data_clean_text['Job_description'] = eng_data_clean_text['Job_description'].apply(lambda x: " ".join(x for x in x.split() if x not in stop)) # Removal of stopwords
     eng_data_clean_text['Job_description'][:5].apply(lambda x: str(TextBlob(x).correct())) # Spelling correction
     return eng_data_clean_text
+
 def lemmatization(eng_data_clean_text):
     '''
     We do lemmatization to group together words which do not have the same root. 
@@ -243,6 +248,7 @@ def lemmatization(eng_data_clean_text):
     '''
     eng_data_clean_text['Job_description'] = eng_data_clean_text['Job_description'].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
     return lemmatization()
+
 def frequent_words(process_eng_data_text):
     '''
     The most occurring words are: data, team, experience, business, work, product, working, teams,
@@ -253,6 +259,7 @@ def frequent_words(process_eng_data_text):
     freq_description_list = ['teams', 'strong', 'new', 'company', 'work', 'working'] # List some frequent words not relevant
     eng_data_clean_text['Job_description'] = eng_data_clean_text['Job_description'].apply(lambda x: " ".join(x for x in x.split() if x not in freq_description_list))
     return freq_description
+
 def my_tokenizer(text):
     '''
     We define the function my_tokenizer . As we are working with
@@ -275,8 +282,7 @@ def tokenization(eng_data_clean_text):
     '''
     tokens_description = eng_data_clean_text.Job_description.map(my_tokenizer).sum() 
     return tokens_description
-    
-    
+        
  def wordcloud(counter_description2):
     '''
     Word clouds: visualization word frequency
@@ -286,8 +292,7 @@ def tokenization(eng_data_clean_text):
                     max_words=200)
     wc.generate_from_frequencies(counter_description2)
     
-    # Plot
-    
+    # Plot   
     plt.figure(figsize=(20,10))
     plt.imshow(wc , interpolation='bilinear')
     plt.axis("off")
